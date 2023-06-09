@@ -92,6 +92,7 @@ bool GameApp::Initialize()
     UpdateWindow(m_hWnd);
     
     m_Renderer = new D2DRenderer;
+    m_Renderer->Initialize(m_hWnd);
 
     return false;
 }
@@ -126,5 +127,6 @@ void GameApp::Render()
 
 void GameApp::Uninitalize()
 {
+    m_Renderer->Uninitialize();
     delete m_Renderer;
 }

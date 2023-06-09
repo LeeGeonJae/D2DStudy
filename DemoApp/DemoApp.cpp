@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "DemoApp.h"
 
+#pragma comment(lib, "windowscodecs.lib")
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
@@ -26,10 +27,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // TODO: 여기에 코드를 입력합니다.
 
     // 전역 문자열을 초기화합니다.
-    DemoApp App(hInstance);
-    App.Initialize();
-    App.Loop();
-    App.Uninitalize();
+    DemoApp* App = new DemoApp(hInstance);
+    App->Initialize();
+    App->Loop();
+    App->Uninitalize();
 
     return 1;
 }
@@ -59,5 +60,42 @@ void DemoApp::Update()
 
 void DemoApp::Render()
 {
+    // 그리기 시작 알린다.
+    m_Renderer->m_pD2DRenderTarget->BeginDraw();
 
+    D2D1::ColorF color(D2D1::ColorF::Red);
+
+    m_Renderer->m_pD2DRenderTarget->Clear(color);
+
+    D2D1_RECT_F rect;
+    rect.left = 100;
+    rect.right = rect.left + 500;
+    rect.top = 100;
+    rect.bottom = rect.top + 500;
+
+    m_Renderer->m_pD2DRenderTarget->FillRectangle(rect, m_Renderer->m_pGrayBrush);
+
+    rect.left = 400;
+    rect.right = rect.left + 300;
+    rect.top = 400;
+    rect.bottom = rect.top + 300;
+
+    m_Renderer->m_pD2DRenderTarget->DrawRectangle(rect, m_Renderer->m_pBlackBrush);
+
+    static const WCHAR sc_helloWorld[] = L"Hello, World!";
+    D2D1_SIZE_F renderTargetSize = m_Renderer->m_pD2DRenderTarget->GetSize();
+
+    m_Renderer->m_pD2DRenderTarget->DrawText(
+        sc_helloWorld,
+        ARRAYSIZE(sc_helloWorld) - 1,
+        m_Renderer->m_pWriteTextFormat,
+        D2D1::RectF(0, 0, renderTargetSize.width, renderTargetSize.height),
+        m_Renderer->m_pBlackBrush
+    );
+
+    m_Renderer->m_pD2DRenderTarget->SetTransform(D2D1::Matrix3x2F::Translation(500, 0));
+    m_Renderer->m_pD2DRenderTarget->DrawBitmap(m_Renderer->m_pD2DBitmap);
+
+    // 그리기 시작 알린다.
+    m_Renderer->m_pD2DRenderTarget->EndDraw();
 }

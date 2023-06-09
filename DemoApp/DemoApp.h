@@ -2,6 +2,7 @@
 
 #include "resource.h"
 #include "../D2DRender/GameApp.h"
+#include "../D2DRender/D2DRenderer.h"
 
 class DemoApp : public GameApp
 {
