@@ -7,11 +7,8 @@
 #ifndef PCH_H
 #define PCH_H
 
-
-
 // 여기에 미리 컴파일하려는 헤더 추가
 #include "framework.h"
-
 // Windows 헤더 파일
 #include <windows.h>
 // C 런타임 헤더 파일입니다.
@@ -19,5 +16,14 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+
+#include <d2d1.h>
+#include <wincodec.h>
+#include <comdef.h>
+#include <d2d1_1helper.h>
+#include <dwrite.h>
+#include <sysinfoapi.h>
+#include <string>
+#include <assert.h>
 
 #endif //PCH_H

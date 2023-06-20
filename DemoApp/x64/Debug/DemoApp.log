@@ -1,1 +1,3 @@
-﻿  DemoApp.vcxproj -> D:\Programming2\2학기\Direct2D Assignment\이건재\D2DEngine\x64\Debug\DemoApp.exe
+﻿  DemoApp.cpp
+  LINK : C:\Users\User\Documents\GitHub\D2DStudy\D2DStudy\x64\Debug\DemoApp.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
+  DemoApp.vcxproj -> C:\Users\User\Documents\GitHub\D2DStudy\D2DStudy\x64\Debug\DemoApp.exe

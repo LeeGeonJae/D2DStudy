@@ -1,40 +1,29 @@
 #pragma once
-
-#include <d2d1.h>
-#include <d2d1_1helper.h>
-#include <dwrite.h>
-#include <wincodec.h>
-#include <comdef.h>
+#include <list>
+#include <string>
+#include <d2d1_1.h>
 
 class D2DRenderer
 {
 public:
 	D2DRenderer();
 	~D2DRenderer();
-
-
-	bool Initialize(HWND hWnd);
-	void Uninitialize();
-
-public:
-	HRESULT CreateD2DBitmapFromFile(HWND hWnd, const WCHAR* szFilePath, ID2D1Bitmap** pID2D1Bitmap);
+	HRESULT Initialize();
+	static ID2D1HwndRenderTarget* m_pD2DRenderTarget;
+	static D2DRenderer* m_Instance;
 
 public:
-	// 기본 D2D사용을 위한 Factory의 인터페이스 포인터
-	ID2D1Factory* m_pD2D1Factory = NULL;
-	ID2D1HwndRenderTarget* m_pD2DRenderTarget = NULL;
+	ID2D1Factory* m_pD2DFactory = NULL;				// 기본 D2D사용을 위한 Factory의 인터페이스 포인터
 
-	// 렌더 타겟에서 생성한 브러쉬의 인터페이스 포인터
-	ID2D1SolidColorBrush* m_pGrayBrush = NULL;
-	ID2D1SolidColorBrush* m_pBlackBrush = NULL;
+	ID2D1SolidColorBrush* g_pGrayBrush = NULL;	// 렌더타겟에서생성한 브러시의 인터페이스 포인터
+	ID2D1SolidColorBrush* g_pBlackBrush = NULL;
+	IDWriteFactory* g_pDWriteFactory = NULL;		// 텍스트 출력을 위한 객체 인터페이스 포인터
+	IDWriteTextFormat* g_pDWriteTextFormat = NULL;
+	IWICImagingFactory* m_pIWICImagingFactory = NULL;	// WIC 인터페이스
 
-	// 텍스트 출력을 위한 객체 인터페이스 포인터
-	IDWriteFactory* m_pWriteFactory = NULL;
-	IDWriteTextFormat* m_pWriteTextFormat = NULL;
+	std::list < std::pair<std::wstring, ID2D1Bitmap*>> m_SharingD2DBitmaps;
 
-	// WIC 인터페이스
-	IWICImagingFactory* m_pIWICImagingFactory = NULL;
-
-	// 이미지로드후 생성하고 받아오는 인터페이스
-	ID2D1Bitmap* m_pD2DBitmap = NULL;
+public:
+	HRESULT CreateD2DBitmapFromFile(std::wstring strFilePath, ID2D1Bitmap** pID2D1Bitmap);
+	void ReleaseD2DBitmapFromFile(ID2D1Bitmap* pID2D1Bitmap);
 };

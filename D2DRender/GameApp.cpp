@@ -1,6 +1,171 @@
 #include "pch.h"
 #include "GameApp.h"
 #include "D2DRenderer.h"
+
+GameApp* GameApp::m_pInstance = nullptr;
+HWND GameApp::m_hWnd;
+
+
+LRESULT CALLBACK DefaultWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	return  GameApp::m_pInstance->WndProc(hWnd, message, wParam, lParam);
+}
+
+GameApp::GameApp(HINSTANCE hInstance)
+	:m_hInstance(hInstance), m_szWindowClass(L"DefaultWindowCalss"), m_szTitle(L"GameApp"), m_nHeight(768), m_nWidth(1024)
+{
+	std::wstring str(__FUNCTIONW__);
+	str += L"\n";
+	OutputDebugString(str.c_str());
+
+	GameApp::m_pInstance = this;
+	m_wcex.hInstance = hInstance;
+	m_wcex.cbSize = sizeof(WNDCLASSEX);
+	m_wcex.style = CS_HREDRAW | CS_VREDRAW;
+	m_wcex.lpfnWndProc = DefaultWndProc;
+	m_wcex.cbClsExtra = 0;
+	m_wcex.cbWndExtra = 0;
+	m_wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
+	m_wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	m_wcex.lpszClassName = m_szWindowClass;
+}
+
+GameApp::~GameApp()
+{
+	std::wstring str(__FUNCTIONW__);
+	str += L"\n";
+	OutputDebugString(str.c_str());
+
+	delete m_TimeManager;
+	delete m_KeyManager;
+	delete m_PathManager;
+}
+
+// 윈도우 정보는 게임 마다 다를수 있으므로 등록,생성,보이기만 한다.
+bool GameApp::Initialize()
+{
+	// 등록
+	RegisterClassExW(&m_wcex);
+
+	//생성
+	m_hWnd = CreateWindowW(m_szWindowClass, m_szTitle, WS_OVERLAPPEDWINDOW,
+		100, 100,	// 시작 위치
+		m_nWidth, m_nHeight,	// 가로,세로
+		nullptr, nullptr, m_hInstance, nullptr);
+
+	if (!m_hWnd)
+	{
+		return false;
+	}
+
+	// 윈도우 보이기
+	ShowWindow(m_hWnd, SW_SHOW);
+	UpdateWindow(m_hWnd);
+
+	m_TimeManager->Initialize();
+	m_KeyManager->Initialize();
+
+	HRESULT hr = m_D2DRenderer.Initialize();
+	if (FAILED(hr))
+	{
+		MessageBoxComError(hr);
+	}
+
+	return true;
+}
+
+void GameApp::Loop()
+{
+	// PeekMessage 메세지가 있으면 true,없으면 false
+	while (TRUE)
+	{
+		if (PeekMessage(&m_msg, NULL, 0, 0, PM_REMOVE))
+		{
+			if (m_msg.message == WM_QUIT)
+				break;
+
+			//윈도우 메시지 처리 
+			TranslateMessage(&m_msg); // 키입력관련 메시지 변환  WM_KEYDOWN -> WM_CHAR
+			DispatchMessage(&m_msg);
+		}
+		else
+		{
+			Update();
+			Render();
+		}
+	}
+
+
+	//return (int)m_msg.wParam;
+}
+
+void GameApp::Update()
+{
+	m_TimeManager->Update();
+	m_KeyManager->Update();
+
+	CalculateFrameStats();
+}
+
+void GameApp::CalculateFrameStats()
+{
+	//해당 코드는 초당 프레임을 계산하고, 1프레임 렌더시 걸리는 시간의 평균을 계산한다.
+	//해당 수치들은 창의 제목표시줄에 추가된다.
+
+	static int frameCnt = -1;
+	static float timeElapsed = 0.0f;
+
+	frameCnt++;
+	if (frameCnt == 0)
+		return;
+
+	timeElapsed += m_deltaTime;
+
+	//1초동안의 프레임 시간의 평균을 계산합니다.
+	if (timeElapsed >= 1.0f)
+	{
+		float fps = (float)frameCnt;  //Frame Per Second
+		float spf = 1000.0f / fps;   // MilliSecond Per Frame
+
+		std::wstring windowText;
+		windowText.append(m_szTitle);
+		windowText.append(L"  FPS: ");
+		windowText.append(std::to_wstring(fps));
+		windowText.append(L"  SPF: ");
+		windowText.append(std::to_wstring(spf));
+		SetWindowText(m_hWnd, windowText.c_str());
+
+		//다음 계산을위해 리셋
+		frameCnt = 0;
+		timeElapsed -= 1.0f;
+	}
+}
+
+void GameApp::Render()
+{
+	D2DRenderer::m_pD2DRenderTarget->BeginDraw();
+
+	D2D1::ColorF color(D2D1::ColorF::Red);
+
+	D2DRenderer::m_pD2DRenderTarget->Clear(color);
+
+	// 그리기 끝
+	D2DRenderer::m_pD2DRenderTarget->EndDraw();
+}
+
+
+
+BOOL GameApp::GetClientRect(LPRECT lpRect)
+{
+	return ::GetClientRect(m_hWnd, lpRect);
+}
+
+int GameApp::MessageBoxComError(HRESULT hr)
+{
+	_com_error err(hr);
+	return ::MessageBox(m_hWnd, err.ErrorMessage(), L"FAILED", MB_OK);
+}
+
 //
 //  함수: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
@@ -11,122 +176,46 @@
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK GameApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    switch (message)
-    {
-    case WM_PAINT:
-    {
-        PAINTSTRUCT ps;
-        HDC hdc = BeginPaint(hWnd, &ps);
-        // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-        EndPaint(hWnd, &ps);
-    }
-    break;
-    case WM_DESTROY:
-        PostQuitMessage(0);
-        break;
-    default:
-        return DefWindowProc(hWnd, message, wParam, lParam);
-    }
-    return 0;
-}
+	switch (message)
+	{
+		// 게임이므로 메뉴는없앤다.
+		/*
+		case WM_COMMAND:
+		{
 
-// 정보 대화 상자의 메시지 처리기입니다.
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    UNREFERENCED_PARAMETER(lParam);
-    switch (message)
-    {
-    case WM_INITDIALOG:
-        return (INT_PTR)TRUE;
+			int wmId = LOWORD(wParam);
+			// 메뉴 선택을 구문 분석합니다:
+			switch (wmId)
+			{
+			case IDM_ABOUT:
+				DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+				break;
+			case IDM_EXIT:
+				DestroyWindow(hWnd);
+				break;
+			default:
+				return DefWindowProc(hWnd, message, wParam, lParam);
+			}
 
-    case WM_COMMAND:
-        if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
-        {
-            EndDialog(hDlg, LOWORD(wParam));
-            return (INT_PTR)TRUE;
-        }
-        break;
-    }
-    return (INT_PTR)FALSE;
-}
+		}
+		break;
+		*/
+	case WM_PAINT:
+	{
+		PAINTSTRUCT ps;
+		HDC hdc = BeginPaint(hWnd, &ps);
+		// TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+		EndPaint(hWnd, &ps);
+	}
+	break;
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+	default:
+		return DefWindowProc(hWnd, message, wParam, lParam);
+	}
 
-GameApp::GameApp(HINSTANCE hInstance)
-    :m_hInst(hInstance)
-    , m_szWindowClass(L"DefaultWindowClass")
-    , m_szTitle(L"DefalutWindowTitle")
-{
-    // 특정 게임App과 상관없는 기본 세팅
-    m_wcex.cbSize = sizeof(WNDCLASSEX);
-    m_wcex.style = CS_HREDRAW | CS_VREDRAW;
-    m_wcex.lpfnWndProc = WndProc;
-    m_wcex.cbClsExtra = 0;
-    m_wcex.cbWndExtra = 0;
-    m_wcex.hInstance = m_hInst;
-    m_wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    m_wcex.lpszMenuName = NULL;
-    m_wcex.lpszClassName = m_szWindowClass;
-
-}
-
-GameApp::~GameApp()
-{
-}
-
-bool GameApp::Initialize()
-{
-
-    // m_wcex가 준비되었다고 가정
-    RegisterClassExW(&m_wcex);
-
-    m_hWnd = CreateWindowW(m_szWindowClass, m_szTitle, WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, m_hInst, nullptr);
-
-    if (!m_hWnd)
-    {
-        return FALSE;
-    }
-
-    ShowWindow(m_hWnd, SW_SHOW);
-    UpdateWindow(m_hWnd);
-    
-    m_Renderer = new D2DRenderer;
-    m_Renderer->Initialize(m_hWnd);
-
-    return false;
-}
-
-void GameApp::Loop()
-{
-    while (true)
-    {
-        if (PeekMessage(&m_msg, m_hWnd, 0, 0, PM_REMOVE))
-        {
-            if (m_msg.message == WM_QUIT)
-                break;
-
-            TranslateMessage(&m_msg);
-            DispatchMessage(&m_msg);
-        }
-        else
-        {
-            Update();
-            Render();
-        }
-    }
-}
-
-void GameApp::Update()
-{
-}
-
-void GameApp::Render()
-{
-}
-
-void GameApp::Uninitalize()
-{
-    m_Renderer->Uninitialize();
-    delete m_Renderer;
+	return 0;
 }
