@@ -16,6 +16,10 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <string>
+#include <list>
+#include <vector>
+#include <math.h>
 
 #include <d2d1.h>
 #include <wincodec.h>
@@ -23,7 +27,7 @@
 #include <d2d1_1helper.h>
 #include <dwrite.h>
 #include <sysinfoapi.h>
-#include <string>
 #include <assert.h>
+
 
 #endif //PCH_H

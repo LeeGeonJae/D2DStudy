@@ -10,6 +10,7 @@
 #include "TimeManager.h"
 #include "KeyManager.h"
 #include "PathManager.h"
+#include "World.h"
 
 class GameApp
 {
@@ -42,6 +43,8 @@ public:
 	TimeManager* m_TimeManager = new TimeManager;
 	KeyManager*  m_KeyManager = new KeyManager;
 	PathManager* m_PathManager = new PathManager;
+
+	World* m_World = new World;
 
 public:
 	virtual bool Initialize();

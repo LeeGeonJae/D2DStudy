@@ -29,11 +29,16 @@ void Shape::Render(D2DRenderer* _Renderer)
 		rect.right = (float)Position.x + 100;
 		rect.bottom = (float)Position.y + 50;
 
-		_Renderer->m_pD2DRenderTarget->FillRectangle(rect, _Renderer->g_pBlackBrush);
+		_Renderer->m_pD2DRenderTarget->FillRectangle(rect, _Renderer->m_pBlackBrush);
 	}
 		break;
 	case ShapeType::Circle:
-
+		D2D1_ELLIPSE a;
+		a.point.x = Position.x;
+		a.point.y = Position.y;
+		a.radiusX = 50.f;
+		a.radiusY = 50.f;
+		_Renderer->m_pD2DRenderTarget->DrawEllipse(a, _Renderer->m_pBlackBrush);
 		break;
 	}
 }

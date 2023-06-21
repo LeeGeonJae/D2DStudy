@@ -7,6 +7,7 @@
 #include "../D2DRender/AnimationAsset.h"
 #include "../D2DRender/AnimationInstance.h"
 #include "../D2DRender/TimeManager.h"
+#include "../D2DRender/SphereComponent.h"
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
@@ -74,12 +75,27 @@ void DemoApp::Render()
     m_AnimationInstance1->Render(D2DRenderer::m_pD2DRenderTarget);
     m_AnimationInstance2->Render(D2DRenderer::m_pD2DRenderTarget);
 
+    m_World->Render(D2DRenderer::m_pD2DRenderTarget);
+
     D2DRenderer::m_pD2DRenderTarget->EndDraw();
 }
 
 bool DemoApp::Initialize()
 {
     GameApp::Initialize();
+
+    GameObject* Object = m_World->CreateGameObject<GameObject>();
+    Object->SetLocation(200.f, 200.f);
+    SphereComponent* Sphere = Object->m_pRootComponent->CreateChild<SphereComponent>();
+    Sphere->m_RadiusPosition.x = 50.f;
+    Sphere->m_RadiusPosition.y = 50.f;
+
+    SphereComponent* Sphere2 = Object->m_pRootComponent->CreateChild<SphereComponent>();
+    Sphere2->SetRelativeLocation(60.f, 0.f);
+    Sphere2->SetRelativeRotation(5.f);
+    Sphere2->SetRelativeScale(2.f, 2.f);
+    Sphere2->m_RadiusPosition.x = 50.f;
+    Sphere2->m_RadiusPosition.y = 50.f;
 
     // 경로 세팅
     m_PathManager->Initialize();
@@ -100,7 +116,7 @@ bool DemoApp::Initialize()
     m_AnimationAsset2->Build();
     
 
-    // 애니메이션 좌표값 계산 ( 배경 )
+    // 애니메이션 이미지 좌표값 계산 ( 배경 )
     std::vector<FRAME_INFO> frame1;
     frame1.push_back(FRAME_INFO(0, 0, 784, 320, 0.2f));
     frame1.push_back(FRAME_INFO(789, 0, 784, 320, 0.2f));
@@ -113,7 +129,7 @@ bool DemoApp::Initialize()
     m_AnimationInstance1->SetDstRect(rect);
 
 
-    // 애니메이션 좌표값 계산 ( 달리기 )
+    // 애니메이션 이미지 좌표값 계산 ( 달리기 )
     std::vector<FRAME_INFO> frame2;
     frame2.push_back(FRAME_INFO(28, 36, 103, 84, 0.1f));
     frame2.push_back(FRAME_INFO(148, 36, 86, 84, 0.1f));
@@ -126,12 +142,12 @@ bool DemoApp::Initialize()
     frame2.push_back(FRAME_INFO(899, 31, 76, 89, 0.1f));
     frame2.push_back(FRAME_INFO(993, 33, 92, 87, 0.1f));
     m_AnimationAsset2->m_Animations.push_back(frame2);
-    m_AnimationInstance2->SetAnimationInfo(m_AnimationAsset2);
     m_AnimationInstance2->SetPosition(200.f, 200.f);
+    m_AnimationInstance2->SetAnimationInfo(m_AnimationAsset2);
     rect = RECT{ 0, 0, 100, 100 };
     m_AnimationInstance2->SetDstRect(rect);
 
-    m_AnimationInstance2->SetRotation(135.f);
+    //m_AnimationInstance2->SetRotation(90.f);
 
     return false;
 }

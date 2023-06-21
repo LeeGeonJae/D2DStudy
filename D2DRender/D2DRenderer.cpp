@@ -57,26 +57,26 @@ HRESULT D2DRenderer::Initialize()
 
     if (SUCCEEDED(hr))
     {
-        hr = m_pD2DRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Gray), &g_pGrayBrush);
+        hr = m_pD2DRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Gray), &m_pGrayBrush);
     }
 
     if (SUCCEEDED(hr))
     {
-        hr = m_pD2DRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Black), &g_pBlackBrush);
+        hr = m_pD2DRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Black), &m_pBlackBrush);
     }
 
     if (SUCCEEDED(hr))
     {
         hr = DWriteCreateFactory(
             DWRITE_FACTORY_TYPE_SHARED,
-            __uuidof(g_pDWriteFactory),
-            reinterpret_cast<IUnknown**>(&g_pDWriteFactory)
+            __uuidof(m_pDWriteFactory),
+            reinterpret_cast<IUnknown**>(&m_pDWriteFactory)
         );
     }
 
     if (SUCCEEDED(hr))
     {
-        hr = g_pDWriteFactory->CreateTextFormat(
+        hr = m_pDWriteFactory->CreateTextFormat(
             L"Bernard MT Condensed",
             NULL,
             DWRITE_FONT_WEIGHT_NORMAL,
@@ -84,14 +84,14 @@ HRESULT D2DRenderer::Initialize()
             DWRITE_FONT_STRETCH_NORMAL,
             50.0f,
             L"", //locale
-            &g_pDWriteTextFormat
+            &m_pDWriteTextFormat
         );
     }
     if (SUCCEEDED(hr))
     {
         // Center the text horizontally and vertically.
-        g_pDWriteTextFormat->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
-        g_pDWriteTextFormat->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+        m_pDWriteTextFormat->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+        m_pDWriteTextFormat->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
     }
 
     if (SUCCEEDED(hr))

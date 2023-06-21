@@ -16,8 +16,26 @@
     <Filter Include="Manager">
       <UniqueIdentifier>{1c3b5869-d3d4-4d5f-8a74-0d40f5ef6a65}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Animation">
+    <Filter Include="Object">
+      <UniqueIdentifier>{97549647-db85-4e79-ad09-76654bc616aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component">
+      <UniqueIdentifier>{8e2500b5-4917-40e0-973c-427061a9871c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Animation">
       <UniqueIdentifier>{c1d05416-f5ec-4369-bdfb-152fb8dab43e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World">
+      <UniqueIdentifier>{746871f6-0af4-470e-a6e1-31e194f74876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\SphereComponent">
+      <UniqueIdentifier>{c85004a7-4f26-4e0b-8930-4b8486ad7924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\TextComponent">
+      <UniqueIdentifier>{e947a507-c7ea-4526-922f-c3cf9c9d8335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\BoxComponent">
+      <UniqueIdentifier>{d3d4a137-2de2-4450-b143-beccc0e5814f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -43,16 +61,40 @@
       <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="AnimationAsset.h">
-      <Filter>Animation</Filter>
+      <Filter>Object\Component\Animation</Filter>
     </ClInclude>
     <ClInclude Include="AnimationInstance.h">
-      <Filter>Animation</Filter>
+      <Filter>Object\Component\Animation</Filter>
     </ClInclude>
     <ClInclude Include="ReferenceCounter.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="PathManager.h">
       <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneComponent.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationComponent.h">
+      <Filter>Object\Component\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereComponent.h">
+      <Filter>Object\Component\SphereComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComponent.h">
+      <Filter>Object\Component\TextComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxComponent.h">
+      <Filter>Object\Component\BoxComponent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -75,16 +117,40 @@
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="AnimationAsset.cpp">
-      <Filter>Animation</Filter>
+      <Filter>Object\Component\Animation</Filter>
     </ClCompile>
     <ClCompile Include="AnimationInstance.cpp">
-      <Filter>Animation</Filter>
+      <Filter>Object\Component\Animation</Filter>
     </ClCompile>
     <ClCompile Include="ReferenceCounter.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="PathManager.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneComponent.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationComponent.cpp">
+      <Filter>Object\Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComponent.cpp">
+      <Filter>Object\Component\TextComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereComponent.cpp">
+      <Filter>Object\Component\SphereComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxComponent.cpp">
+      <Filter>Object\Component\BoxComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

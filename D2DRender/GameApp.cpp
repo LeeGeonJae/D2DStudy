@@ -64,6 +64,7 @@ bool GameApp::Initialize()
 
 	m_TimeManager->Initialize();
 	m_KeyManager->Initialize();
+	m_World->Init();
 
 	HRESULT hr = m_D2DRenderer.Initialize();
 	if (FAILED(hr))
@@ -103,6 +104,8 @@ void GameApp::Update()
 {
 	m_TimeManager->Update();
 	m_KeyManager->Update();
+
+	m_World->Update();
 
 	CalculateFrameStats();
 }

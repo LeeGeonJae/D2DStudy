@@ -1,12 +1,4 @@
-﻿  pch.cpp
-  AnimationAsset.cpp
-  AnimationInstance.cpp
-  D2DRenderer.cpp
+﻿  D2DRenderer.cpp
   GameApp.cpp
-  KeyManager.cpp
-  PathManager.cpp
-  ReferenceCounter.cpp
-  Shape.cpp
-  TimeManager.cpp
   코드를 생성하고 있습니다...
-  D2DRender.vcxproj -> C:\Users\User\Documents\GitHub\D2DStudy\D2DStudy\x64\Debug\D2DRender.lib
+  D2DRender.vcxproj -> D:\Programming2\2학기\Direct2D Assignment\이건재\D2DEngine\x64\Debug\D2DRender.lib
