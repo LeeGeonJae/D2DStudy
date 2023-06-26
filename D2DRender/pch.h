@@ -20,6 +20,7 @@
 #include <list>
 #include <vector>
 #include <math.h>
+#include <map>
 
 #include <d2d1.h>
 #include <wincodec.h>

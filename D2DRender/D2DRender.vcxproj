@@ -152,6 +152,7 @@
     <ClInclude Include="PathManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ReferenceCounter.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneComponent.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SphereComponent.h" />
@@ -177,6 +178,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ReferenceCounter.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneComponent.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SphereComponent.cpp" />

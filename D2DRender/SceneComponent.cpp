@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "SceneComponent.h"
 #include "D2DRenderer.h"
+#include "TimeManager.h"
 
 SceneComponent::SceneComponent()
 	: m_RelativeScale{ 1.f, 1.f }
@@ -14,12 +15,16 @@ SceneComponent::SceneComponent()
 
 SceneComponent::~SceneComponent()
 {
-	for (auto pComponent : m_Children)
-	{
-		delete pComponent;
-	}
-
-	m_Children.clear();
+//	for (auto pComponent : m_Children)
+//	{
+//		if (pComponent != nullptr)
+//		{
+//			delete pComponent;
+//			pComponent = nullptr;
+//		}
+//	}
+//
+//	m_Children.clear();
 }
 
 void SceneComponent::Init()
@@ -30,13 +35,13 @@ void SceneComponent::Init()
 	}
 }
 
-void SceneComponent::Update()
+void SceneComponent::Update(TimeManager* _TimeManager)
 {
 	UpdateTransform();
 
 	for (auto& pChild : m_Children)
 	{
-		pChild->Update();
+		pChild->Update(_TimeManager);
 	}
 }
 

@@ -20,9 +20,9 @@ void GameObject::Init()
 	m_pRootComponent->Init();
 }
 
-void GameObject::Update()
+void GameObject::Update(TimeManager* _TimeManager)
 {
-	m_pRootComponent->Update();
+	m_pRootComponent->Update(_TimeManager);
 }
 
 void GameObject::Render(ID2D1RenderTarget* _pRenderTarget)
@@ -38,8 +38,8 @@ void GameObject::SetLocation(float _x, float _y)
 D2D_VECTOR_2F GameObject::GetLocation()
 {
 	D2D_VECTOR_2F position;
-	position.x = m_pRootComponent->m_WorldTransform.m21;
-	position.y = m_pRootComponent->m_WorldTransform.m22;
+	position.x = m_pRootComponent->m_WorldTransform.dx;
+	position.y = m_pRootComponent->m_WorldTransform.dy;
 
 	return position;
 }

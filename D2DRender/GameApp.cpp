@@ -62,11 +62,14 @@ bool GameApp::Initialize()
 	ShowWindow(m_hWnd, SW_SHOW);
 	UpdateWindow(m_hWnd);
 
+	HRESULT hr = m_D2DRenderer.Initialize();
+
 	m_TimeManager->Initialize();
 	m_KeyManager->Initialize();
+	m_PathManager->Initialize();
+	m_ResourceManager->Initialize(m_PathManager);
 	m_World->Init();
 
-	HRESULT hr = m_D2DRenderer.Initialize();
 	if (FAILED(hr))
 	{
 		MessageBoxComError(hr);
@@ -105,7 +108,7 @@ void GameApp::Update()
 	m_TimeManager->Update();
 	m_KeyManager->Update();
 
-	m_World->Update();
+	m_World->Update(m_TimeManager);
 
 	CalculateFrameStats();
 }

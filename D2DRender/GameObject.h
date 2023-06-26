@@ -3,6 +3,7 @@
 class Component;
 class D2DRenderer;
 class SceneComponent;
+class TimeManager;
 
 class GameObject
 {
@@ -15,7 +16,7 @@ public:
 	T* CreateComponent();
 
 	virtual void Init();
-	virtual void Update();
+	virtual void Update(TimeManager* _TimeManager);
 	void Render(ID2D1RenderTarget* _pRenderTarget);
 	void SetLocation(float _x, float _y);
 	D2D_VECTOR_2F GetLocation();
@@ -24,8 +25,6 @@ public:
 	std::vector<Component*> m_OwnedComponent;
 	SceneComponent* m_pRootComponent;
 };
-
-
 
 template<typename T>
 T* GameObject::CreateComponent()

@@ -2,9 +2,14 @@
 #include "World.h"
 #include "GameObject.h"
 #include "D2DRenderer.h"
+#include "TimeManager.h"
 
 World::World()
 {
+
+
+
+
 }
 
 World::~World()
@@ -29,11 +34,11 @@ bool World::Init()
 	return true;
 }
 
-void World::Update()
+void World::Update(TimeManager* _TimeManager)
 {
 	for (auto& pObjects : m_GameObjects)
 	{
-		pObjects->Update();
+		pObjects->Update(_TimeManager);
 	}
 }
 

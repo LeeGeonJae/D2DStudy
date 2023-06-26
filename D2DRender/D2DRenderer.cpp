@@ -8,7 +8,7 @@
 #pragma comment(lib,"d2d1.lib")
 #pragma comment(lib,"dwrite.lib")
 
-ID2D1HwndRenderTarget* D2DRenderer::m_pD2DRenderTarget = NULL;
+ID2D1HwndRenderTarget* D2DRenderer::m_pD2DRenderTarget = nullptr;
 D2DRenderer* D2DRenderer::m_Instance = nullptr;
 
 D2DRenderer::D2DRenderer()

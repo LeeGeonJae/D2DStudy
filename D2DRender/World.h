@@ -1,6 +1,7 @@
 #pragma once
 
 class D2DRenderer;
+class TimeManager;
 
 #include "GameObject.h"
 
@@ -15,7 +16,7 @@ public:
 	T* CreateGameObject();
 
 	virtual bool Init();
-	virtual void Update();
+	virtual void Update(TimeManager* _TimeManager);
 	void Render(ID2D1RenderTarget* pRenderTarget);
 
 public:

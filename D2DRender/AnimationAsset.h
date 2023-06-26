@@ -43,6 +43,10 @@ public:
 	void Build();
 
 	void SetBitmapFilePath(const WCHAR* szFilePath);
+	void SetBitmap(ID2D1Bitmap* _bitmap)
+	{
+		m_pBitmap = _bitmap;
+	}
 private:
 
 };
