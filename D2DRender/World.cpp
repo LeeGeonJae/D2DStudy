@@ -3,12 +3,11 @@
 #include "GameObject.h"
 #include "D2DRenderer.h"
 #include "TimeManager.h"
+#include "ResourceManager.h"
 
 World::World()
+	//:m_FocusCameraComponent()
 {
-
-
-
 
 }
 
@@ -24,11 +23,11 @@ World::~World()
 	}
 }
 
-bool World::Init()
+bool World::Init(ResourceManager* _ResourceManager, PathManager* _PathManager)
 {
 	for (auto& pObjects : m_GameObjects)
 	{
-		pObjects->Init();
+		pObjects->Init(_ResourceManager, _PathManager);
 	}
 
 	return true;

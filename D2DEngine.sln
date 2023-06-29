@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D2DRender", "D2DRender\D2DR
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoApp", "DemoApp\DemoApp.vcxproj", "{7357D151-2616-4780-BB84-46ED6702AF3C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D2DClock", "D2DClock\D2DClock.vcxproj", "{C7821B6B-3733-4C09-B336-C315D2D137DE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -33,14 +31,6 @@ Global
 		{7357D151-2616-4780-BB84-46ED6702AF3C}.Release|x64.Build.0 = Release|x64
 		{7357D151-2616-4780-BB84-46ED6702AF3C}.Release|x86.ActiveCfg = Release|Win32
 		{7357D151-2616-4780-BB84-46ED6702AF3C}.Release|x86.Build.0 = Release|Win32
-		{C7821B6B-3733-4C09-B336-C315D2D137DE}.Debug|x64.ActiveCfg = Debug|x64
-		{C7821B6B-3733-4C09-B336-C315D2D137DE}.Debug|x64.Build.0 = Debug|x64
-		{C7821B6B-3733-4C09-B336-C315D2D137DE}.Debug|x86.ActiveCfg = Debug|Win32
-		{C7821B6B-3733-4C09-B336-C315D2D137DE}.Debug|x86.Build.0 = Debug|Win32
-		{C7821B6B-3733-4C09-B336-C315D2D137DE}.Release|x64.ActiveCfg = Release|x64
-		{C7821B6B-3733-4C09-B336-C315D2D137DE}.Release|x64.Build.0 = Release|x64
-		{C7821B6B-3733-4C09-B336-C315D2D137DE}.Release|x86.ActiveCfg = Release|Win32
-		{C7821B6B-3733-4C09-B336-C315D2D137DE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

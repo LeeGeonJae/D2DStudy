@@ -5,14 +5,13 @@
 GameApp* GameApp::m_pInstance = nullptr;
 HWND GameApp::m_hWnd;
 
-
 LRESULT CALLBACK DefaultWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	return  GameApp::m_pInstance->WndProc(hWnd, message, wParam, lParam);
 }
 
 GameApp::GameApp(HINSTANCE hInstance)
-	:m_hInstance(hInstance), m_szWindowClass(L"DefaultWindowCalss"), m_szTitle(L"GameApp"), m_nHeight(768), m_nWidth(1024)
+	:m_hInstance(hInstance), m_szWindowClass(L"DefaultWindowCalss"), m_szTitle(L"GameApp"), m_nHeight(1080), m_nWidth(1920)
 {
 	std::wstring str(__FUNCTIONW__);
 	str += L"\n";
@@ -39,6 +38,9 @@ GameApp::~GameApp()
 	delete m_TimeManager;
 	delete m_KeyManager;
 	delete m_PathManager;
+	delete m_ResourceManager;
+	delete m_CameraManager;
+	delete m_World;
 }
 
 // 윈도우 정보는 게임 마다 다를수 있으므로 등록,생성,보이기만 한다.
@@ -64,11 +66,19 @@ bool GameApp::Initialize()
 
 	HRESULT hr = m_D2DRenderer.Initialize();
 
+	RECT rc;
+	GetClientRect(&rc);
+	D2D1_SIZE_U size = D2D1::SizeU(
+		static_cast<UINT>(rc.right - rc.left),
+		static_cast<UINT>(rc.bottom - rc.top)
+	);
+
 	m_TimeManager->Initialize();
 	m_KeyManager->Initialize();
 	m_PathManager->Initialize();
 	m_ResourceManager->Initialize(m_PathManager);
-	m_World->Init();
+	
+	m_CameraManager->Initialize(size);
 
 	if (FAILED(hr))
 	{
@@ -107,6 +117,7 @@ void GameApp::Update()
 {
 	m_TimeManager->Update();
 	m_KeyManager->Update();
+	
 
 	m_World->Update(m_TimeManager);
 
@@ -125,7 +136,7 @@ void GameApp::CalculateFrameStats()
 	if (frameCnt == 0)
 		return;
 
-	timeElapsed += m_deltaTime;
+	timeElapsed += m_TimeManager->GetfDT();
 
 	//1초동안의 프레임 시간의 평균을 계산합니다.
 	if (timeElapsed >= 1.0f)
@@ -184,30 +195,30 @@ int GameApp::MessageBoxComError(HRESULT hr)
 //
 LRESULT CALLBACK GameApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	std::wstring str;
 	switch (message)
 	{
-		// 게임이므로 메뉴는없앤다.
-		/*
-		case WM_COMMAND:
-		{
+	//case WM_KEYDOWN:
+	//	if (wParam == VK_LEFT)
+	//	{
+	//		m_CameraManager->AddCameraLocation(-10.f, 0.f);
+	//	}
+	//	else if (wParam == VK_RIGHT)
+	//	{
+	//		m_CameraManager->AddCameraLocation(10.f, 0.f);
+	//	}
+	//	else if (wParam == VK_UP)
+	//	{
+	//		m_CameraManager->AddCameraLocation(0.f, 10.f);
+	//	}
+	//	else if (wParam == VK_DOWN)
+	//	{
+	//		m_CameraManager->AddCameraLocation(0.f, -10.f);
+	//	}
 
-			int wmId = LOWORD(wParam);
-			// 메뉴 선택을 구문 분석합니다:
-			switch (wmId)
-			{
-			case IDM_ABOUT:
-				DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-				break;
-			case IDM_EXIT:
-				DestroyWindow(hWnd);
-				break;
-			default:
-				return DefWindowProc(hWnd, message, wParam, lParam);
-			}
 
-		}
-		break;
-		*/
+	//	str = L"Camera X : " + to_wstring(m_CameraManager->m_locCameraX) + L" Camera Y : " + std::to_wstring(m_CameraManager->m_locCameraY);
+	//	SetWindowText(hWnd, str.c_str());
 	case WM_PAINT:
 	{
 		PAINTSTRUCT ps;

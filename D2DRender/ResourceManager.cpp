@@ -4,6 +4,27 @@
 #include "D2DRenderer.h"
 #include "PathManager.h"
 
+ResourceManager::ResourceManager()
+{
+}
+
+ResourceManager::~ResourceManager()
+{
+	for (auto Textureiter : m_mapTexture)
+		if (Textureiter.second != nullptr)
+		{
+			D2DRenderer::m_Instance->ReleaseD2DBitmapFromFile(Textureiter.second);
+			Textureiter.second = nullptr;
+		}
+
+	for (auto Assetiter : m_mapAnimationAsset)
+		if (Assetiter.second != nullptr)
+		{
+			delete Assetiter.second;
+			Assetiter.second = nullptr;
+		}
+}
+
 void ResourceManager::Initialize(PathManager* _pathManager)
 {
 	// 배경 텍스쳐 저장
@@ -21,10 +42,10 @@ void ResourceManager::Initialize(PathManager* _pathManager)
 
 
 	// 달리기 텍스쳐 저장
-	std::wstring path1 = _pathManager->GetContentPath();
-	path1 += L"Texture\\run.png";
-	CreateTexture(path1);
-	asset = CreateAnimationAsset(path1);
+	std::wstring Runpath = _pathManager->GetContentPath();
+	Runpath += L"Texture\\run.png";
+	CreateTexture(Runpath);
+	asset = CreateAnimationAsset(Runpath);
 	// 달리기 에니메이션 에셋 저장
 	std::vector<FRAME_INFO> runframe;
 	runframe.push_back(FRAME_INFO(28, 36, 103, 84, 0.1f));
@@ -39,7 +60,18 @@ void ResourceManager::Initialize(PathManager* _pathManager)
 	runframe.push_back(FRAME_INFO(993, 33, 92, 87, 0.1f));
 	asset->m_Animations.push_back(runframe);
 
-	//
+	// 태양 텍스쳐 저장
+	std::wstring Sunpath = _pathManager->GetContentPath();
+	Sunpath += L"Texture\\Sun.png";
+	CreateTexture(Sunpath);
+	// 지구 텍스쳐 저장
+	std::wstring Earthpath = _pathManager->GetContentPath();
+	Earthpath += L"Texture\\Earth.png";
+	CreateTexture(Earthpath);
+	// 달 텍스쳐 저장
+	std::wstring Moonpath = _pathManager->GetContentPath();
+	Moonpath += L"Texture\\Moon.png";
+	CreateTexture(Moonpath);
 }
 
 void ResourceManager::CreateTexture(const std::wstring _path)

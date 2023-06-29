@@ -21,6 +21,8 @@ D2DRenderer::~D2DRenderer()
     if (m_pIWICImagingFactory) m_pIWICImagingFactory->Release();
     if (m_pD2DRenderTarget) m_pD2DRenderTarget->Release();
     if (m_pD2DFactory) m_pD2DFactory->Release();
+    if (m_pGrayBrush) m_pGrayBrush->Release();
+    if (m_pBlackBrush) m_pBlackBrush->Release();
 
     // COM »ç¿ë ³¡
     CoUninitialize();
@@ -79,10 +81,10 @@ HRESULT D2DRenderer::Initialize()
         hr = m_pDWriteFactory->CreateTextFormat(
             L"Bernard MT Condensed",
             NULL,
-            DWRITE_FONT_WEIGHT_NORMAL,
+            DWRITE_FONT_WEIGHT_MEDIUM,
             DWRITE_FONT_STYLE_NORMAL,
             DWRITE_FONT_STRETCH_NORMAL,
-            50.0f,
+            15.0f,
             L"", //locale
             &m_pDWriteTextFormat
         );
@@ -105,12 +107,13 @@ HRESULT D2DRenderer::Initialize()
         );
     }
 
-
     if (FAILED(hr))
     {
         _com_error err(hr);
         MessageBox(GameApp::m_hWnd, err.ErrorMessage(), L"FAILED", MB_OK);
     }
+
+
     return hr;
 }
 

@@ -39,6 +39,8 @@ public:
 		m_DstRect.right = (float)rc.right;
 		m_DstRect.bottom = (float)rc.bottom;
 	}
+	void SetDstRect(D2D1_RECT_F rc) { m_DstRect = rc; }
 	void SetRotation(float angle) {m_Transform = D2D1::Matrix3x2F::Rotation(angle, m_Position);}
+	void SetTransform(D2D1_MATRIX_3X2_F _Transform) { m_Transform = _Transform; }
 };
 

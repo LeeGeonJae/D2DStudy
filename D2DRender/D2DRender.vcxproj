@@ -142,7 +142,10 @@
     <ClInclude Include="AnimationAsset.h" />
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AnimationInstance.h" />
+    <ClInclude Include="BitmapComponent.h" />
     <ClInclude Include="BoxComponent.h" />
+    <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="D2DRenderer.h" />
     <ClInclude Include="framework.h" />
@@ -154,8 +157,8 @@
     <ClInclude Include="ReferenceCounter.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneComponent.h" />
-    <ClInclude Include="Shape.h" />
     <ClInclude Include="SphereComponent.h" />
+    <ClInclude Include="SunObject.h" />
     <ClInclude Include="TextComponent.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="World.h" />
@@ -164,7 +167,10 @@
     <ClCompile Include="AnimationAsset.cpp" />
     <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="AnimationInstance.cpp" />
+    <ClCompile Include="BitmapComponent.cpp" />
     <ClCompile Include="BoxComponent.cpp" />
+    <ClCompile Include="CameraComponent.cpp" />
+    <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="D2DRenderer.cpp" />
     <ClCompile Include="GameApp.cpp" />
@@ -180,8 +186,8 @@
     <ClCompile Include="ReferenceCounter.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneComponent.cpp" />
-    <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SphereComponent.cpp" />
+    <ClCompile Include="SunObject.cpp" />
     <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="World.cpp" />

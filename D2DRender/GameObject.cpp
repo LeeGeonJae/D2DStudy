@@ -3,6 +3,7 @@
 #include "SceneComponent.h"
 #include "Component.h"
 #include "D2DRenderer.h"
+#include "ResourceManager.h"
 
 GameObject::GameObject()
 {
@@ -15,9 +16,9 @@ GameObject::~GameObject()
 	delete m_pRootComponent;
 }
 
-void GameObject::Init()
+void GameObject::Init(ResourceManager* _ResourceManager, PathManager* _PathManager)
 {
-	m_pRootComponent->Init();
+	m_pRootComponent->Init(_ResourceManager);
 }
 
 void GameObject::Update(TimeManager* _TimeManager)

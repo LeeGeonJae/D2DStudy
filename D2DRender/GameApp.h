@@ -11,6 +11,7 @@
 #include "KeyManager.h"
 #include "PathManager.h"
 #include "ResourceManager.h"
+#include "CameraManager.h"
 #include "World.h"
 
 class GameApp
@@ -45,6 +46,7 @@ public:
 	KeyManager*  m_KeyManager = new KeyManager;
 	PathManager* m_PathManager = new PathManager;
 	ResourceManager* m_ResourceManager = new ResourceManager;
+	CameraManager* m_CameraManager = new CameraManager;
 	World* m_World = new World;
 
 public:

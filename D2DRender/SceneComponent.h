@@ -3,6 +3,9 @@
 
 class D2DRenderer;
 class TimeManager;
+class ResourceManager;
+
+#include <cassert>
 
 // 위치 정보가 필요한 컴포넌트와 위치 정보가 필요없는 컴포넌트
 // 위치 정보가 필요한 컴포넌트라면 SceneComponent로 생성
@@ -17,7 +20,7 @@ public:
 	template<typename T>
 	T* CreateChild();
 
-	virtual void Init();
+	virtual void Init(ResourceManager* _ResourceManager);
 	virtual void Update(TimeManager* _TimeManager);
 	virtual void Render(ID2D1RenderTarget* pRenderTarget);
 	virtual void UpdateTransform();
@@ -28,6 +31,7 @@ public:
 	void SetRelativeRotation(float _rotate) { m_RelativeRotation = _rotate; }
 	void AddRelativeRotation(float _rotate) { m_RelativeRotation += _rotate; }
 	void SetRelativeLocation(float _x, float _y) { m_RelativeLocation.x = _x; m_RelativeLocation.y = _y; }
+	void AttachToComponent(SceneComponent* _pParnt);
 
 	const D2D_MATRIX_3X2_F GetWorldTransform() { return m_WorldTransform; }
 
@@ -46,8 +50,8 @@ public:
 template<typename T>
 inline T* SceneComponent::CreateChild()
 {
-	//bool bIsBase = std::is_base_of<Component, T>::value;
-	//assert(bIsBase == true);
+	bool bIsBase = std::is_base_of<Component, T>::value;
+	assert(bIsBase == true);
 	T* pComponent = new T;
 	pComponent->SetParentScene(this);
 	m_Children.push_back(pComponent);

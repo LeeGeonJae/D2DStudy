@@ -23,12 +23,13 @@
 #include <map>
 
 #include <d2d1.h>
+#include <d2d1helper.h>
 #include <wincodec.h>
 #include <comdef.h>
 #include <d2d1_1helper.h>
 #include <dwrite.h>
 #include <sysinfoapi.h>
-#include <assert.h>
+#include <cassert>
 
 
 #endif //PCH_H

@@ -7,6 +7,10 @@ class PathManager;
 
 class ResourceManager
 {
+public:
+	ResourceManager();
+	~ResourceManager();
+
 private:
 	std::map<std::wstring, ID2D1Bitmap*> m_mapTexture;
 	std::map<std::wstring, AnimationAsset*> m_mapAnimationAsset;

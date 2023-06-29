@@ -30,9 +30,9 @@ void AnimationInstance::Update(float deltaTime)
 	//여러분이 채워보세요
 	m_ProgressTime += deltaTime;
 
-	if (m_pAnimationAsset->m_Animations[m_AnimationIndex][m_FrameIndex].RenderTime <= m_ProgressTime)
+	if ((m_pAnimationAsset->m_Animations[m_AnimationIndex][m_FrameIndex].RenderTime / m_Speed) <= m_ProgressTime)
 	{
-		m_ProgressTime -= m_pAnimationAsset->m_Animations[m_AnimationIndex][m_FrameIndex].RenderTime;
+		m_ProgressTime -= m_pAnimationAsset->m_Animations[m_AnimationIndex][m_FrameIndex].RenderTime / m_Speed;
 		m_SrcRect = m_pAnimationAsset->m_Animations[m_AnimationIndex][m_FrameIndex].Source;
 		m_FrameIndex++;
 

@@ -10,8 +10,6 @@ AnimationAsset::AnimationAsset()
 
 AnimationAsset::~AnimationAsset()
 {
-	// 팩토리를 통해서 해제한다.
-	D2DRenderer::m_Instance->ReleaseD2DBitmapFromFile(m_pBitmap);
 }
 
 /*
@@ -26,4 +24,3 @@ void AnimationAsset::SetBitmapFilePath(const WCHAR* szFilePath)
 {
 	m_BitmapFilePath = szFilePath;
 }
-

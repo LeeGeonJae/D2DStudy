@@ -19,32 +19,38 @@
     <Filter Include="Object">
       <UniqueIdentifier>{97549647-db85-4e79-ad09-76654bc616aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Component">
-      <UniqueIdentifier>{8e2500b5-4917-40e0-973c-427061a9871c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="World">
       <UniqueIdentifier>{746871f6-0af4-470e-a6e1-31e194f74876}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Component\SceneComponent">
-      <UniqueIdentifier>{d9b4151a-ab72-460d-9180-86ba0762e5f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Component\SceneComponent\RenderComponent">
-      <UniqueIdentifier>{5d8c5731-a017-47fd-9ddc-00a430b981f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Component\SceneComponent\RenderComponent\Animation">
-      <UniqueIdentifier>{c1d05416-f5ec-4369-bdfb-152fb8dab43e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Component\SceneComponent\RenderComponent\SphereComponent">
-      <UniqueIdentifier>{c85004a7-4f26-4e0b-8930-4b8486ad7924}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Component\SceneComponent\RenderComponent\TextComponent">
-      <UniqueIdentifier>{e947a507-c7ea-4526-922f-c3cf9c9d8335}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Component\SceneComponent\RenderComponent\BoxComponent">
-      <UniqueIdentifier>{d3d4a137-2de2-4450-b143-beccc0e5814f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource">
       <UniqueIdentifier>{f40e8a59-2a1b-4840-a0b4-530ad04ed09f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{8e2500b5-4917-40e0-973c-427061a9871c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SceneComponent">
+      <UniqueIdentifier>{d9b4151a-ab72-460d-9180-86ba0762e5f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SceneComponent\RenderComponent">
+      <UniqueIdentifier>{5d8c5731-a017-47fd-9ddc-00a430b981f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SceneComponent\RenderComponent\Animation">
+      <UniqueIdentifier>{c1d05416-f5ec-4369-bdfb-152fb8dab43e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SceneComponent\RenderComponent\SphereComponent">
+      <UniqueIdentifier>{c85004a7-4f26-4e0b-8930-4b8486ad7924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SceneComponent\RenderComponent\TextComponent">
+      <UniqueIdentifier>{e947a507-c7ea-4526-922f-c3cf9c9d8335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SceneComponent\RenderComponent\BoxComponent">
+      <UniqueIdentifier>{d3d4a137-2de2-4450-b143-beccc0e5814f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SceneComponent\RenderComponent\BitmapComponent">
+      <UniqueIdentifier>{218f014e-6011-46b1-b85c-9eeb532c5110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SceneComponent\CameraComponent">
+      <UniqueIdentifier>{e421d4da-4deb-451c-a666-4783c8789dd1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,9 +66,6 @@
     <ClInclude Include="GameApp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="KeyManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
@@ -70,7 +73,7 @@
       <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="AnimationInstance.h">
-      <Filter>Object\Component\SceneComponent\RenderComponent\Animation</Filter>
+      <Filter>Component\SceneComponent\RenderComponent\Animation</Filter>
     </ClInclude>
     <ClInclude Include="ReferenceCounter.h">
       <Filter>헤더 파일</Filter>
@@ -82,31 +85,43 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>Object\Component</Filter>
+      <Filter>Component</Filter>
     </ClInclude>
     <ClInclude Include="World.h">
       <Filter>World</Filter>
     </ClInclude>
     <ClInclude Include="AnimationComponent.h">
-      <Filter>Object\Component\SceneComponent\RenderComponent\Animation</Filter>
+      <Filter>Component\SceneComponent\RenderComponent\Animation</Filter>
     </ClInclude>
     <ClInclude Include="SphereComponent.h">
-      <Filter>Object\Component\SceneComponent\RenderComponent\SphereComponent</Filter>
+      <Filter>Component\SceneComponent\RenderComponent\SphereComponent</Filter>
     </ClInclude>
     <ClInclude Include="TextComponent.h">
-      <Filter>Object\Component\SceneComponent\RenderComponent\TextComponent</Filter>
+      <Filter>Component\SceneComponent\RenderComponent\TextComponent</Filter>
     </ClInclude>
     <ClInclude Include="BoxComponent.h">
-      <Filter>Object\Component\SceneComponent\RenderComponent\BoxComponent</Filter>
+      <Filter>Component\SceneComponent\RenderComponent\BoxComponent</Filter>
     </ClInclude>
     <ClInclude Include="SceneComponent.h">
-      <Filter>Object\Component\SceneComponent</Filter>
+      <Filter>Component\SceneComponent</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="AnimationAsset.h">
       <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapComponent.h">
+      <Filter>Component\SceneComponent\RenderComponent\BitmapComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Component\SceneComponent\CameraComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="SunObject.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,9 +134,6 @@
     <ClCompile Include="GameApp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="KeyManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
@@ -129,7 +141,7 @@
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="AnimationInstance.cpp">
-      <Filter>Object\Component\SceneComponent\RenderComponent\Animation</Filter>
+      <Filter>Component\SceneComponent\RenderComponent\Animation</Filter>
     </ClCompile>
     <ClCompile Include="ReferenceCounter.cpp">
       <Filter>소스 파일</Filter>
@@ -141,31 +153,43 @@
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>Object\Component</Filter>
+      <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>World</Filter>
     </ClCompile>
     <ClCompile Include="AnimationComponent.cpp">
-      <Filter>Object\Component\SceneComponent\RenderComponent\Animation</Filter>
+      <Filter>Component\SceneComponent\RenderComponent\Animation</Filter>
     </ClCompile>
     <ClCompile Include="TextComponent.cpp">
-      <Filter>Object\Component\SceneComponent\RenderComponent\TextComponent</Filter>
+      <Filter>Component\SceneComponent\RenderComponent\TextComponent</Filter>
     </ClCompile>
     <ClCompile Include="SphereComponent.cpp">
-      <Filter>Object\Component\SceneComponent\RenderComponent\SphereComponent</Filter>
+      <Filter>Component\SceneComponent\RenderComponent\SphereComponent</Filter>
     </ClCompile>
     <ClCompile Include="BoxComponent.cpp">
-      <Filter>Object\Component\SceneComponent\RenderComponent\BoxComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneComponent.cpp">
-      <Filter>Object\Component\SceneComponent</Filter>
+      <Filter>Component\SceneComponent\RenderComponent\BoxComponent</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="AnimationAsset.cpp">
       <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapComponent.cpp">
+      <Filter>Component\SceneComponent\RenderComponent\BitmapComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneComponent.cpp">
+      <Filter>Component\SceneComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Component\SceneComponent\CameraComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="SunObject.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

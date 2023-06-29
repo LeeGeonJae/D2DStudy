@@ -4,10 +4,6 @@
 #include "resource.h"
 #include <d2d1.h>
 
-class AnimationAsset;
-class AnimationInstance;
-class SphereComponent;
-
 class DemoApp : public GameApp
 {
 public:
@@ -19,9 +15,5 @@ public:
 	virtual bool Initialize() override;//
 
 private:
-	AnimationInstance*	m_AnimationInstance1;
-	AnimationInstance*	m_AnimationInstance2;
-	SphereComponent* Sphere2;
-	SphereComponent* Sphere3;
 };
 
