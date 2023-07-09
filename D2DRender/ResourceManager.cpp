@@ -74,16 +74,29 @@ void ResourceManager::Initialize(PathManager* _pathManager)
 	CreateTexture(Moonpath);
 }
 
-void ResourceManager::CreateTexture(const std::wstring _path)
+ID2D1Bitmap* ResourceManager::CreateTexture(const std::wstring _path)
 {
 	ID2D1Bitmap* bitmap;
+	bitmap = FindTexture(_path);
+
+	if (bitmap != nullptr)
+		return nullptr;
+	
 	D2DRenderer::m_Instance->CreateD2DBitmapFromFile(_path, &bitmap);	// 비트맵 파일 생성
 	m_mapTexture.insert(make_pair(_path, bitmap));						// 맵 저장
+
+	return bitmap;
 }
 
 AnimationAsset* ResourceManager::CreateAnimationAsset(const std::wstring _path)
 {
-	AnimationAsset* animationasset = new AnimationAsset;
+	AnimationAsset* animationasset;
+	animationasset = FindAnimationAsset(_path);
+
+	if (animationasset != nullptr)
+		return nullptr;
+
+	animationasset = new AnimationAsset;
 	animationasset->SetBitmap(FindTexture(_path));						// 비트맵 세팅
 	animationasset->SetBitmapFilePath(_path.c_str());					// 경로 세팅
 	m_mapAnimationAsset.insert(make_pair(_path, animationasset));		// 맵 저장

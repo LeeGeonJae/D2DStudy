@@ -14,6 +14,7 @@ class ResourceManager;
 #include "BoxComponent.h"
 #include "AnimationComponent.h"
 #include "TextComponent.h"
+#include "OBBCollision.h"
 
 class GameObject
 {
@@ -24,6 +25,8 @@ public:
 public:
 	template <typename T>
 	T* CreateComponent();
+	OBBCollision* CreateCollision();
+	OBBCollision* GetCollision() {return m_pOBBCollision;}
 
 	virtual void Init(ResourceManager* _ResourceManager, PathManager* _PathManager);
 	virtual void Update(TimeManager* _TimeManager);
@@ -34,6 +37,7 @@ public:
 public:
 	std::vector<Component*> m_OwnedComponent;
 	SceneComponent* m_pRootComponent;
+	OBBCollision*	m_pOBBCollision;
 };
 
 template<typename T>

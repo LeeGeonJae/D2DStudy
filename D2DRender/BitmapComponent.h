@@ -1,8 +1,8 @@
 #pragma once
-#include "SceneComponent.h"
+#include "RenderComponent.h"
 
 class BitmapComponent :
-    public SceneComponent
+    public RenderComponent
 {
 public:
     BitmapComponent();
@@ -21,6 +21,7 @@ public:
         m_Rect.top = _top;
         m_Rect.right = _right;
         m_Rect.bottom = _bottom;
+        m_AABBRect = m_Rect;
     }
 
 private:

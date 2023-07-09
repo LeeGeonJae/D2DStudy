@@ -34,19 +34,21 @@ void SphereComponent::Update(TimeManager* _TimeManager)
 
 void SphereComponent::Render(ID2D1RenderTarget* pRenderTarget)
 {
-	pRenderTarget->SetTransform(CameraManager::pInstance->SetObjectTransform(m_WorldTransform));
-	
-	D2D1_ELLIPSE Ellipse;
-	Ellipse.point.x = 0;
-	Ellipse.point.y = 0;
-	Ellipse.radiusX = m_RadiusPosition.x;
-	Ellipse.radiusY = m_RadiusPosition.y;
+	if (CameraManager::m_pInstance->intersect(m_AABBmin, m_AABBmax))
+	{
+		pRenderTarget->SetTransform(m_WorldTransform * CameraManager::m_pInstance->GetInvertTransform());
 
-	pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(m_Color), &m_ColorBrush);
+		D2D1_ELLIPSE Ellipse;
+		Ellipse.point.x = 0;
+		Ellipse.point.y = 0;
+		Ellipse.radiusX = m_RadiusPosition.x;
+		Ellipse.radiusY = m_RadiusPosition.y;
 
-	if (m_ColorBrush != nullptr)
-		pRenderTarget->DrawEllipse(Ellipse, m_ColorBrush);
+		pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(m_Color), &m_ColorBrush);
 
+		if (m_ColorBrush != nullptr)
+			pRenderTarget->DrawEllipse(Ellipse, m_ColorBrush);
+	}
 	// 자식 클래스의 Render함수를 모두 실행
 	__super::Render(pRenderTarget);
 }

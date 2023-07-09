@@ -7,7 +7,6 @@ SunObject::SunObject()
 	, m_Text1()
 	, m_Text2()
 	, m_Text3()
-	, m_Box()
 	, m_Earth()
 	, m_Animation()
 {
@@ -19,9 +18,6 @@ SunObject::~SunObject()
 
 void SunObject::Init(ResourceManager* _ResourceManager, PathManager* _PathManager)
 {
-    // 루트 컴포넌트 생성
-    m_pRootComponent = new SceneComponent;
-
     // 비트맵 컴포넌트(태양) 생성
     std::wstring sunpath = _PathManager->GetContentPath();
     sunpath += L"Texture\\Sun.png";
@@ -33,10 +29,6 @@ void SunObject::Init(ResourceManager* _ResourceManager, PathManager* _PathManage
     // 텍스트 컴포넌트 생성
     m_Text1 = m_Sun->CreateChild<TextComponent>();
     m_Text1->SetColor(D2D1::ColorF::White);
-
-    // 박스 컴포넌트 생성
-    m_Box = m_Sun->CreateChild<BoxComponent>();
-    m_Box->SetColor(D2D1::ColorF::White);
 
     // 비트맵 컴포넌트 (지구) 생성
     m_Earth = m_Sun->CreateChild<BitmapComponent>();
@@ -52,10 +44,9 @@ void SunObject::Init(ResourceManager* _ResourceManager, PathManager* _PathManage
     m_Animation = m_Earth->CreateChild<AnimationComponent>();
     std::wstring runpath = _PathManager->GetContentPath();
     runpath += L"Texture\\run.png";
-    m_Animation->SetAnimationAssetPasth(runpath);
+    m_Animation->SetAnimationAssetPath(runpath);
     m_Animation->SetRelativeLocation(100.f, 0.f);
     m_Animation->SetSizeRect(0.f, 0.f, 50.f, 50.f);
-    m_Animation->Init(_ResourceManager);
 
     // 텍스트 컴포넌트 생성
     m_Text3 = m_Animation->CreateChild<TextComponent>();

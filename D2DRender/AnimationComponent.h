@@ -1,5 +1,5 @@
 #pragma once
-#include "SceneComponent.h"
+#include "RenderComponent.h"
 
 class AnimationInstance;
 class AnimationAsset;
@@ -7,7 +7,7 @@ class TimeManager;
 class ResourceManager;
 
 class AnimationComponent :
-    public SceneComponent
+    public RenderComponent
 {
 public:
     AnimationComponent();
@@ -18,12 +18,13 @@ public:
     virtual void Render(ID2D1RenderTarget* pRenderTarget) override;
 
 public:
-    void SetAnimationAssetPasth(const std::wstring& _strAssetKey) { m_strAnimationAssetPath = _strAssetKey; }
+    void SetAnimationAssetPath(const std::wstring& _strAssetKey) { m_strAnimationAssetPath = _strAssetKey; }
     void SetSizeRect(float _top, float _left, float _bottom, float _right) {
         m_DstRect.top = _top - _bottom / 2;
         m_DstRect.left = _left - _right / 2;
         m_DstRect.bottom = _bottom / 2;
         m_DstRect.right = _right / 2;
+        m_AABBRect = m_DstRect;
     }
 
 public:

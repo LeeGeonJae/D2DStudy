@@ -3,6 +3,7 @@
 #include "D2DRenderer.h"
 #include "TimeManager.h"
 #include "ResourceManager.h"
+#include "CameraManager.h"
 
 SceneComponent::SceneComponent()
 	: m_RelativeScale{ 1.f, 1.f }
@@ -11,6 +12,9 @@ SceneComponent::SceneComponent()
 	, m_RelativeTransform()
 	, m_WorldTransform()
 	, m_pParentScene(nullptr)
+	, m_AABBRect()
+	, m_AABBmax()
+	, m_AABBmin()
 {
 }
 
@@ -52,15 +56,15 @@ void SceneComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	{
 		pChild->Render(pRenderTarget);
 	}
+
 }
 
 void SceneComponent::UpdateTransform()
 {
-
 	m_RelativeTransform = D2D1::Matrix3x2F::Scale(D2D1::SizeF(m_RelativeScale.x, m_RelativeScale.y)) *
 		D2D1::Matrix3x2F::Rotation(m_RelativeRotation) *
 		D2D1::Matrix3x2F::Translation(m_RelativeLocation.x, m_RelativeLocation.y);
-	
+
 	if (m_pParentScene != nullptr)
 	{
 		m_WorldTransform = m_RelativeTransform * m_pParentScene->m_WorldTransform;
@@ -69,6 +73,13 @@ void SceneComponent::UpdateTransform()
 	{
 		m_WorldTransform = m_RelativeTransform;
 	}
+
+	// AABB °è»ê
+	D2D1_MATRIX_3X2_F AABB = m_WorldTransform * CameraManager::m_pInstance->GetInvertTransform();
+	m_AABBmin.x = AABB._31 + m_AABBRect.left;
+	m_AABBmin.y = AABB._32 + m_AABBRect.top;
+	m_AABBmax.x = AABB._31 + m_AABBRect.right;
+	m_AABBmax.y = AABB._32 + m_AABBRect.bottom;
 }
 
 void SceneComponent::AttachToComponent(SceneComponent* _pParnt)

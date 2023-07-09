@@ -3,6 +3,8 @@
 #include "ReferenceCounter.h"
 #include <vector>
 
+class ResourceManager;
+
 // 애니메이션 기본 프레임의 기본 정보
 struct FRAME_INFO
 {
@@ -39,8 +41,6 @@ public:
 	std::wstring m_BitmapFilePath;
 
 	std::vector<std::vector<FRAME_INFO>> m_Animations;
-
-	void Build();
 
 	void SetBitmapFilePath(const WCHAR* szFilePath);
 	void SetBitmap(ID2D1Bitmap* _bitmap)

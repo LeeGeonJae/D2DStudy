@@ -14,6 +14,7 @@ AnimationInstance::AnimationInstance()
 
 AnimationInstance::~AnimationInstance()
 {
+	m_pAnimationAsset = nullptr;
 }
 
 void AnimationInstance::SetAnimationInfo(AnimationAsset* pAnimationInfo)

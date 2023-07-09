@@ -117,7 +117,7 @@ void GameApp::Update()
 {
 	m_TimeManager->Update();
 	m_KeyManager->Update();
-	
+	m_CameraManager->Update(m_KeyManager, m_TimeManager);
 
 	m_World->Update(m_TimeManager);
 

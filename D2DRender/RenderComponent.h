@@ -23,6 +23,8 @@ protected:
 public:
     void SetZOrder(int zOrder) { m_iZOrder = zOrder; }
     void SetVisible(bool visible) { m_bVisible = visible; }
-    virtual void Render(ID2D1RenderTarget* pRenderTarget) = 0;
+
+    virtual void Update(TimeManager* _TimeManager);
+    virtual void Render(ID2D1RenderTarget* pRenderTarget);
 };
 

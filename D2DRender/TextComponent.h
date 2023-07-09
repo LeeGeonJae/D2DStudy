@@ -1,8 +1,8 @@
 #pragma once
-#include "SceneComponent.h"
+#include "RenderComponent.h"
 
 class TextComponent :
-    public SceneComponent
+    public RenderComponent
 {
 public:
     TextComponent();

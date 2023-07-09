@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Manager">
       <UniqueIdentifier>{1c3b5869-d3d4-4d5f-8a74-0d40f5ef6a65}</UniqueIdentifier>
     </Filter>
@@ -52,20 +40,29 @@
     <Filter Include="Component\SceneComponent\CameraComponent">
       <UniqueIdentifier>{e421d4da-4deb-451c-a666-4783c8789dd1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\SunObject">
+      <UniqueIdentifier>{d7d55022-ef46-498b-9c65-362f80acb89f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\TextObject">
+      <UniqueIdentifier>{98b122fb-7496-407e-b0d1-26492fce0b4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\BoxObject">
+      <UniqueIdentifier>{3c6899ce-58d8-4846-818f-ab29382dda67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Defalut">
+      <UniqueIdentifier>{3a59e174-2222-4085-a7f5-b7f87213f095}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{2f551926-04ba-48a8-8f26-305fceb1fb0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Renderer">
+      <UniqueIdentifier>{cd83fe13-ea0d-4dc3-acb0-0ed8f3e0dc66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SceneComponent\OBBCollision">
+      <UniqueIdentifier>{98c38342-c782-49be-a5da-a2fa9e426802}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="D2DRenderer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="GameApp.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="KeyManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
@@ -74,9 +71,6 @@
     </ClInclude>
     <ClInclude Include="AnimationInstance.h">
       <Filter>Component\SceneComponent\RenderComponent\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="ReferenceCounter.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="PathManager.h">
       <Filter>Manager</Filter>
@@ -121,19 +115,37 @@
       <Filter>Component\SceneComponent\CameraComponent</Filter>
     </ClInclude>
     <ClInclude Include="SunObject.h">
-      <Filter>Object</Filter>
+      <Filter>Object\SunObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TextObject.h">
+      <Filter>Object\TextObject</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxObject.h">
+      <Filter>Object\BoxObject</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderComponent.h">
+      <Filter>Component\SceneComponent\RenderComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="GameApp.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="D2DRenderer.h">
+      <Filter>App\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Defalut</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Defalut</Filter>
+    </ClInclude>
+    <ClInclude Include="ReferenceCounter.h">
+      <Filter>Defalut</Filter>
+    </ClInclude>
+    <ClInclude Include="OBBCollision.h">
+      <Filter>Component\SceneComponent\OBBCollision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="D2DRenderer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="GameApp.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="KeyManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
@@ -142,9 +154,6 @@
     </ClCompile>
     <ClCompile Include="AnimationInstance.cpp">
       <Filter>Component\SceneComponent\RenderComponent\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="ReferenceCounter.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="PathManager.cpp">
       <Filter>Manager</Filter>
@@ -189,7 +198,31 @@
       <Filter>Component\SceneComponent\CameraComponent</Filter>
     </ClCompile>
     <ClCompile Include="SunObject.cpp">
-      <Filter>Object</Filter>
+      <Filter>Object\SunObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TextObject.cpp">
+      <Filter>Object\TextObject</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxObject.cpp">
+      <Filter>Object\BoxObject</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderComponent.cpp">
+      <Filter>Component\SceneComponent\RenderComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="GameApp.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="D2DRenderer.cpp">
+      <Filter>App\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Defalut</Filter>
+    </ClCompile>
+    <ClCompile Include="ReferenceCounter.cpp">
+      <Filter>Defalut</Filter>
+    </ClCompile>
+    <ClCompile Include="OBBCollision.cpp">
+      <Filter>Component\SceneComponent\OBBCollision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

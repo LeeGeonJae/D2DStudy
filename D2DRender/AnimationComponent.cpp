@@ -3,6 +3,7 @@
 #include "AnimationInstance.h"
 #include "TimeManager.h"
 #include "ResourceManager.h"
+#include "D2DRenderer.h"
 #include "CameraManager.h"
 
 AnimationComponent::AnimationComponent()
@@ -43,8 +44,14 @@ void AnimationComponent::Update(TimeManager* _TimeManager)
 
 void AnimationComponent::Render(ID2D1RenderTarget* pRenderTarget)
 {
-	m_AnimationInstance->SetTransform(CameraManager::pInstance->SetObjectTransform(m_WorldTransform));
-	m_AnimationInstance->Render(pRenderTarget);
+	if (CameraManager::m_pInstance->intersect(m_AABBmin, m_AABBmax))
+	{
+		m_AnimationInstance->SetTransform(m_WorldTransform * CameraManager::m_pInstance->GetInvertTransform());
+
+		m_AnimationInstance->Render(pRenderTarget);
+
+		CameraManager::m_pInstance->CullCount++;
+	}
 
 	__super::Render(pRenderTarget);
 }

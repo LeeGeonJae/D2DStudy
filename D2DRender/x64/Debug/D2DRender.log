@@ -1,2 +1,30 @@
-﻿  SunObject.cpp
-  D2DRender.vcxproj -> D:\Programming2\2학기\Direct2D Assignment\이건재\D2DEngine\x64\Debug\D2DRender.lib
+﻿  pch.cpp
+  AnimationAsset.cpp
+  AnimationComponent.cpp
+  AnimationInstance.cpp
+  BitmapComponent.cpp
+  BoxComponent.cpp
+  BoxObject.cpp
+  CameraComponent.cpp
+  CameraManager.cpp
+  Component.cpp
+  D2DRenderer.cpp
+  GameApp.cpp
+  GameObject.cpp
+  KeyManager.cpp
+  PathManager.cpp
+  ReferenceCounter.cpp
+  RenderComponent.cpp
+  ResourceManager.cpp
+  SceneComponent.cpp
+  SphereComponent.cpp
+  SunObject.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  TextComponent.cpp
+  TextObject.cpp
+  TimeManager.cpp
+  World.cpp
+E:\Programming2\2학기\Direct2D Assignment\이건재\D2DEngine\D2DRender\World.cpp(69,2): warning C4267: '인수': 'size_t'에서 'UINT32'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  D2DRender.vcxproj -> E:\Programming2\2학기\Direct2D Assignment\이건재\D2DEngine\x64\Debug\D2DRender.lib

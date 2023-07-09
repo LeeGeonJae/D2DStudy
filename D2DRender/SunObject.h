@@ -7,7 +7,7 @@ class SunObject :
 {
 public:
 	SunObject();
-	~SunObject();
+	virtual ~SunObject();
 
 public:
 	virtual void Init(ResourceManager* _ResourceManager, PathManager* _PathManager);
@@ -19,7 +19,6 @@ public:
 	TextComponent*		m_Text1;
 	TextComponent*		m_Text2;
 	TextComponent*		m_Text3;
-	BoxComponent*		m_Box;
 	BitmapComponent*	m_Earth;
 	AnimationComponent* m_Animation;
 };

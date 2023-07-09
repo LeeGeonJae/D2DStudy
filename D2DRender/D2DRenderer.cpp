@@ -23,6 +23,11 @@ D2DRenderer::~D2DRenderer()
     if (m_pD2DFactory) m_pD2DFactory->Release();
     if (m_pGrayBrush) m_pGrayBrush->Release();
     if (m_pBlackBrush) m_pBlackBrush->Release();
+    if (m_pBlackBrush) m_pWhiteBrush->Release();
+    if (m_pBlackBrush) m_pBlueBrush->Release();
+    if (m_pBlackBrush) m_pRedBrush->Release();
+    if (m_pBlackBrush) m_pYellowBrush->Release();
+    if (m_pBlackBrush) m_pGreenBrush->Release();
 
     // COM »ç¿ë ³¡
     CoUninitialize();
@@ -65,6 +70,31 @@ HRESULT D2DRenderer::Initialize()
     if (SUCCEEDED(hr))
     {
         hr = m_pD2DRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Black), &m_pBlackBrush);
+    }
+
+    if (SUCCEEDED(hr))
+    {
+        hr = m_pD2DRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Blue), &m_pBlueBrush);
+    }
+
+    if (SUCCEEDED(hr))
+    {
+        hr = m_pD2DRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Yellow), &m_pYellowBrush);
+    }
+
+    if (SUCCEEDED(hr))
+    {
+        hr = m_pD2DRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::White), &m_pWhiteBrush);
+    }
+
+    if (SUCCEEDED(hr))
+    {
+        hr = m_pD2DRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Green), &m_pGreenBrush);
+    }
+
+    if (SUCCEEDED(hr))
+    {
+        hr = m_pD2DRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Red), &m_pRedBrush);
     }
 
     if (SUCCEEDED(hr))
